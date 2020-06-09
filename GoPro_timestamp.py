@@ -44,15 +44,15 @@ video = cv2.VideoCapture(filename)
 status = video.isOpened()
 
 if status == True: 
-    FPS = video.get(cv2.cv.CV_CAP_PROP_FPS)
-    width = video.get(cv2.cv.CV_CAP_PROP_FRAME_WIDTH)
-    height = video.get(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT)
+    FPS = video.get(cv2.CAP_PROP_FPS)
+    width = video.get(cv2.CAP_PROP_FRAME_WIDTH)
+    height = video.get(cv2.CAP_PROP_FRAME_HEIGHT)
     size = (int(width), int(height))
-    total_frames = video.get(cv2.cv.CV_CAP_PROP_FRAME_COUNT)
+    total_frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
     frame_lapse = (1/FPS)*1000
 
     #Initializes the export video file
-    codec = cv2.cv.CV_FOURCC('D','I','V','X')
+    codec = cv2.VideoWriter_fourcc('D','I','V','X')
     video_out = cv2.VideoWriter(filename[:-4] + '.avi', codec, FPS, size, 1)
 
     #Initializes time origin of the video
@@ -71,8 +71,8 @@ if status == True:
     #exports the frame to the output video.
     while current_frame < total_frames:
         success, image = video.read()
-        elapsed_time = video.get(cv2.cv.CV_CAP_PROP_POS_MSEC)
-        current_frame = video.get(cv2.cv.CV_CAP_PROP_POS_FRAMES)
+        elapsed_time = video.get(cv2.CAP_PROP_POS_MSEC)
+        current_frame = video.get(cv2.CAP_PROP_POS_FRAMES)
         timestamp = initial + dt.timedelta(microseconds = elapsed_time*1000)
 #        print(timestamp)
         cv2.putText(image, 'Date: ' + str(timestamp)[0:10], (50,int(height-150)), cv2.FONT_HERSHEY_COMPLEX_SMALL, 2, (255, 255, 255), 3)
