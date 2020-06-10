@@ -75,8 +75,8 @@ if status == True:
         current_frame = video.get(cv2.CAP_PROP_POS_FRAMES)
         timestamp = initial + dt.timedelta(microseconds = elapsed_time*1000)
 #        print(timestamp)
-        cv2.putText(image, 'Date: ' + str(timestamp)[0:10], (50,int(height-150)), cv2.FONT_HERSHEY_COMPLEX_SMALL, 2, (255, 255, 255), 3)
-        cv2.putText(image, 'Time: ' + str(timestamp)[11:-4], (50,int(height-100)), cv2.FONT_HERSHEY_COMPLEX_SMALL, 2, (255, 255, 255), 3)
+        cv2.putText(image, 'Date: ' + str(timestamp)[0:10], (50,int(height-150)), cv2.FONT_HERSHEY_DUPLEX, 2, (255, 255, 255), 3)
+        cv2.putText(image, 'Time: ' + str(timestamp)[11:-4], (50,int(height-100)), cv2.FONT_HERSHEY_DUPLEX, 2, (255, 255, 255), 3)
         video_out.write(image)
 #        cv2.imshow('Video', image)
 
